@@ -45,6 +45,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         _('Email Address'), max_length=255, unique=True,
         help_text='Ex: example@example.com'
     )
+    puesto = models.CharField(max_length=30)
+
     is_staff = models.BooleanField(
         _('Staff status'), default=False
     )

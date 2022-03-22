@@ -134,7 +134,9 @@ def add_eventmember(request, event_id):
                 user = forms.cleaned_data['user']
                 EventMember.objects.create(
                     event=event,
-                    user=user
+                    user=user,
+                    Aprobacion=True,
+                    Comentario="Sin comentario"
                 )
                 return redirect('calendarapp:calendar')
             else:

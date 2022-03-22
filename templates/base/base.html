@@ -138,28 +138,28 @@
             <div class="app-sidebar__user">
                 <img class="app-sidebar__user-avatar" src="https://cdn.icon-icons.com/icons2/1161/PNG/512/1487716857-user_81635.png" alt="User Image" height="50px" width="50px"/>
                 <div>
-                    <p class="app-sidebar__user-name">{{ User.name }}</p>
-                    <p class="app-sidebar__user-designation">Puesto</p>
+                    <p class="app-sidebar__user-name">{{ user }}</p>
+                    <p class="app-sidebar__user-designation">{{ user.puesto }}</p>
                 </div>
             </div>
             <ul class="app-menu">
                 <li>
-                    <a class="app-menu__item active" href="{% url 'dashboard' %}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a>
+                    <a class="app-menu__item active" href="{% url 'dashboard' %}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Tablero</span></a>
                 </li>
                 <li>
-                    <a class="app-menu__item" href="{% url 'calendarapp:calendar' %}"><i class="app-menu__icon fa fa-calendar"></i><span class="app-menu__label">Calendar</span></a>
+                    <a class="app-menu__item" href="{% url 'calendarapp:calendar' %}"><i class="app-menu__icon fa fa-calendar"></i><span class="app-menu__label">Calendarios</span></a>
                 </li>
                 <li class="treeview">
-                    <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Events</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                    <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Eventos de mis Proyectos</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                     <ul class="treeview-menu">
                         <li>
-                            <a class="treeview-item" href="{% url 'calendarapp:running_events' %}"><i class="icon fa fa-circle-o"></i> Running</a>
+                            <a class="treeview-item" href="{% url 'calendarapp:running_events' %}"><i class="icon fa fa-circle-o"></i> En Tiempo </a>
                         </li>
                         <li>
-                            <a class="treeview-item" href="{% url 'calendarapp:running_events' %}"><i class="icon fa fa-circle-o"></i> Upcoming</a>
+                            <a class="treeview-item" href="{% url 'calendarapp:running_events' %}"><i class="icon fa fa-circle-o"></i> Atrasados</a>
                         </li>
                         <li>
-                            <a class="treeview-item" href="{% url 'calendarapp:all_events' %}"><i class="icon fa fa-circle-o"></i> All</a>
+                            <a class="treeview-item" href="{% url 'calendarapp:all_events' %}"><i class="icon fa fa-circle-o"></i> Todos</a>
                         </li>
                     </ul>
                 </li>

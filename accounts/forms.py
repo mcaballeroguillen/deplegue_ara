@@ -3,7 +3,13 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.password_validation import validate_password
 
 from accounts.models import User
-
+GEEKS_CHOICES =(
+    ("Tec", "Tecnico"),
+    ("C_Proy",  "Coordinador de Proyecto"),
+    ( "C_Unidad", "Coordinador de Unidad"),
+    ( "Dir" , "Director"),
+    ("Admin","Administrador" ),
+)
 
 class SignInForm(forms.Form):
     email = forms.EmailField(widget=forms.EmailInput(attrs={
@@ -29,6 +35,7 @@ class SignUpForm(forms.ModelForm):
         }),
         validators=[validate_password]
     )
+    puesto = forms.ChoiceField(choices=GEEKS_CHOICES)
 
     class Meta:
         model = User
