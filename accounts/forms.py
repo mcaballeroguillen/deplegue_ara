@@ -36,7 +36,7 @@ class SignUpForm(forms.ModelForm):
         validators=[validate_password]
     )
     puesto = forms.ChoiceField(choices=GEEKS_CHOICES)
-
+    unidad = forms.CharField()
     class Meta:
         model = User
         fields = ['email']

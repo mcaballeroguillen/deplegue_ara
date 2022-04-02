@@ -391,3 +391,49 @@ def SubirArchivos(request):
     context=upload.objects.all()
     return render(request,'index1.html',{'context':context})
 
+
+def filter_user(request):
+    template_name = 'calendarapp/calendar.html'
+    form_class = EventForm
+    if request.method=='POST':
+        forms = form_class()
+        user_f= request.POST['Cuenta']
+        user_f = user.User.objects.get(email=user_f)
+        events = Event.objects.get_all_events(user=user_f)
+        # Mostrar solo lineas de proyectos participates
+        e_partica = Event.objects.filter(user=user_f)
+        lineas = []
+        for even in e_partica:
+            lina = even.linea_p_id
+            if not lina in lineas:
+                lineas.append(lina)
+        events_month = []
+
+        for line_id in lineas:
+            Linea_p = Line_Presupuesto.objects.get(Id=line_id)
+            events_month.append(Linea_p)
+
+        # events_month = Line_Presupuesto.objects.all()
+        event_list = []
+        # start: '2020-09-16T16:00:00'
+        for event in events:
+            event_list.append({
+                'title': event.title,
+                'start': event.start_time.date().strftime("%Y-%m-%dT%H:%M:%S"),
+                'end': event.end_time.date().strftime("%Y-%m-%dT%H:%M:%S"),
+            })
+        context = {
+            'form': forms,
+            'events': event_list,
+            'events_month': events_month
+        }
+        return render(request, template_name, context)
+
+
+    else:
+        unidad = request.user.unidad
+        opciones = user.User.objects.filter(unidad=unidad)
+        ctx ={
+            'opciones': opciones
+        }
+        return render(request, 'calendarapp/filter_calendar.html',ctx)

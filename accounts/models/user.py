@@ -39,14 +39,20 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
+
+
+
 class User(AbstractBaseUser, PermissionsMixin):
     """ Custom user model """
+    username = models.CharField(max_length=20)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
     email = models.EmailField(
         _('Email Address'), max_length=255, unique=True,
         help_text='Ex: example@example.com'
     )
     puesto = models.CharField(max_length=30)
-
+    unidad = models.CharField(max_length=50)
     is_staff = models.BooleanField(
         _('Staff status'), default=False
     )
@@ -63,6 +69,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
+
+
 
     def __str__(self):
         return self.email
