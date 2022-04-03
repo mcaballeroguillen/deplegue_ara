@@ -7,7 +7,7 @@ from .forms import SignUpForm
 
 class UserAdmin(UserAdmin):
     model = user
-    form= SignUpForm
+    #form= SignUpForm
     list_display = [
         'id','email', 'is_staff', 'is_active', 'date_joined', 'last_updated'
 
@@ -28,7 +28,7 @@ class UserAdmin(UserAdmin):
     #exclude = ('date_joined',)
 admin.site.register(get_user_model(),UserAdmin)
 UserAdmin.list_filter+=('puesto','unidad')
-UserAdmin.fieldset+=('puesto','unidad')
+#UserAdmin.fieldset+=('puesto','unidad')
 UserAdmin.list_display+=('puesto','unidad')
-UserAdmin.list_editable+=('puesto','unidad')
+UserAdmin.list_editable+=('puesto','unidad','email')
 

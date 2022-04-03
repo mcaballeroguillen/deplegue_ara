@@ -11,6 +11,8 @@ class Line_Presupuesto(models.Model):
 
     def __str__(self):
         return  self.Codigo
+    class Meta:
+        unique_together = ['Proyecto', 'Codigo']
 
 class Cronogram(models.Model):
     Proyecto = models.CharField(max_length=150)

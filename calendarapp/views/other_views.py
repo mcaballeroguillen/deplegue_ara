@@ -6,7 +6,8 @@ from django.views import generic
 from django.utils.safestring import mark_safe
 from datetime import timedelta, datetime, date
 import calendar
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
+from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy, reverse
 import pandas as pd
@@ -81,6 +82,8 @@ def create_event(request):
     return render(request, 'event.html', {'form': form})
 
 
+
+@method_decorator(permission_required( 'calendarapp.change_event'),name='dispatch')
 class EventEdit(generic.UpdateView):
     model = Event
     fields = ['title', 'description', 'start_time', 'end_time','Presupuesto']
