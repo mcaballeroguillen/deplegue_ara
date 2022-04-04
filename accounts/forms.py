@@ -9,6 +9,7 @@ GEEKS_CHOICES =(
     ( "C_Unidad", "Coordinador de Unidad"),
     ( "Dir" , "Director"),
     ("Admin","Administrador" ),
+    ("Gerente","Gerente")
 )
 
 class SignInForm(forms.Form):
