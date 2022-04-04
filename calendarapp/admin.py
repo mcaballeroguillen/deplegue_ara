@@ -23,10 +23,10 @@ class EventMemberAdmin(admin.ModelAdmin):
 
 
 
-"""@admin.register(models.linea_presupuesto)
+#@admin.register(models.linea_presupuesto)
 class LineaPresupuestoAdmin(admin.ModelAdmin):
     model = Line_Presupuesto
-    list_display = ['id', 'Proyecto', 'Codigo', 'Total', 'Ejecutado','En_Ejucucion','Saldo']
+    list_display = [ 'Proyecto', 'Codigo', 'Total', 'Ejecutado','En_Ejucucion','Saldo']
     list_filter = ['Proyecto','Codigo']
 
-admin.site.register(Line_Presupuesto,LineaPresupuestoAdmin)"""
+admin.site.register(Line_Presupuesto,LineaPresupuestoAdmin)

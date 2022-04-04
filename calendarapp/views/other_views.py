@@ -59,6 +59,7 @@ class CalendarView(LoginRequiredMixin, generic.ListView):
 
 
 @login_required(login_url='signup')
+@permission_required( 'calendarapp.add_event')
 def create_event(request):
     form = EventForm(request.POST or None)
     if request.POST and form.is_valid():
@@ -90,7 +91,12 @@ class EventEdit(generic.UpdateView):
     template_name = 'event.html'
 
 
+
+
+
+
 @login_required(login_url='signup')
+@permission_required('calendarapp.change_event')
 def agregar_aprobacion(request, event_id):
     if  request.method=="GET":
          return render(request,'Aprobación.html')
@@ -125,7 +131,7 @@ def event_details(request, event_id):
     Actualizar_Saldos(proyecto)
     return render(request, 'event-details.html', context)
 
-
+@permission_required('calendarapp.add_event_member')
 def add_eventmember(request, event_id):
     forms = AddMemberForm()
     if request.method == 'POST':
@@ -149,7 +155,7 @@ def add_eventmember(request, event_id):
     }
     return render(request, 'add_member.html', context)
 
-
+@method_decorator(permission_required( 'calendarapp.delete_event_member'),name='dispatch')
 class EventMemberDeleteView(generic.DeleteView):
     model = EventMember
     template_name = 'event_delete.html'
@@ -207,6 +213,7 @@ class CalendarViewNew(LoginRequiredMixin, generic.View):
 
 
 @login_required(login_url='signup')
+@permission_required( 'calendarapp.add_event')
 def sub_excel(request):
     if request.method=='POST':
         form_1 = excel_form(request.POST, request.FILES)

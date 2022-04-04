@@ -7,16 +7,16 @@ from django import forms
 class EventForm(ModelForm):
     class Meta:
         model = Event
-        fields = ['title', 'description', 'start_time', 'end_time']
+        fields = ['title', 'description', 'start_time', 'end_time', 'linea_p', 'Presupuesto']
         # datetime-local is a HTML5 input type
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Enter eveeeent title'
+                'placeholder': 'Escriba el título del evento'
             }),
-            'description': forms.Textarea(attrs={
+            'description': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Enter event description'
+                'placeholder': 'Escriba la descripción del evento'
             }),
             'start_time': DateInput(
                 attrs={'type': 'datetime-local', 'class': 'form-control'},
@@ -26,10 +26,10 @@ class EventForm(ModelForm):
                 attrs={'type': 'datetime-local', 'class': 'form-control'},
                 format='%Y-%m-%dT%H:%M'
             ),
-            'Proyecto': forms.TextInput(attrs={
+            'Prespuesto':forms.NumberInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Enter eveeeent title'
-            }),
+                'placeholder': 'Presupuesto'}
+            ),
 
         }
         exclude = ['user']
