@@ -10,7 +10,7 @@ class EventAdmin(admin.ModelAdmin):
         'id', 'title', 'user', 'is_active', 'is_deleted', 'created_at',
         'updated_at'
     ]
-    list_filter = ['is_active', 'is_deleted']
+    list_filter = ['is_active', 'is_deleted','Proyecto']
     search_fields = ['title']
 
 

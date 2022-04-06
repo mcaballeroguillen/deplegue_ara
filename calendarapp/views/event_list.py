@@ -9,7 +9,17 @@ class AllEventsListView(ListView):
     model = Event
 
     def get_queryset(self):
-        return Event.objects.get_all_events(user=self.request.user)
+        object_list=[]
+        normales = Event.objects.filter(user=self.request.user)
+        extra = EventMember.objects.filter(user=self.request.user)
+        for e in normales:
+            evento_detallado= Event.objects.get(id=e.id)
+            object_list.append(evento_detallado)
+        for e in extra:
+            evento_detallado = Event.objects.get(id=e.event_id)
+            object_list.append(evento_detallado)
+
+        return object_list
 
 
 class RunningEventsListView(TemplateView):

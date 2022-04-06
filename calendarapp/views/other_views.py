@@ -401,7 +401,7 @@ def SubirArchivos(request):
     context=upload.objects.all()
     return render(request,'index1.html',{'context':context})
 
-
+@permission_required('accounts.view_user')
 def filter_user(request):
     template_name = 'calendarapp/calendar.html'
     form_class = EventForm
