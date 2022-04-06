@@ -31,7 +31,7 @@ class Event(EventAbstract):
     linea_p = models.ForeignKey(
         Line_Presupuesto, on_delete=models.CASCADE, related_name='events')
 
-    title = models.CharField(max_length=200, unique=False)
+    title = models.CharField(max_length=500, unique=False)
     description = models.TextField()
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()

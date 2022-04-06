@@ -442,7 +442,10 @@ def filter_user(request):
 
     else:
         unidad = request.user.unidad
+
         opciones = user.User.objects.filter(unidad=unidad)
+        if unidad=="Oficina Nacional":
+            opciones=user.User.objects.all()
         ctx ={
             'opciones': opciones
         }
