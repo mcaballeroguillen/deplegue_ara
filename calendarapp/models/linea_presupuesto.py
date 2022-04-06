@@ -3,7 +3,7 @@ from django.db import  models
 class Line_Presupuesto(models.Model):
     Proyecto = models.CharField(max_length=150)
     Id = models.IntegerField(primary_key=True)
-    Codigo= models.CharField(max_length=10)
+    Codigo= models.CharField(max_length=500)
     Total = models.FloatField()
     Ejecutado = models.FloatField()
     En_Ejucucion = models.FloatField()
