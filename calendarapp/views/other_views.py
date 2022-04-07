@@ -234,7 +234,7 @@ def sub_excel(request):
 
         for u in range (len(df2)):
             if (not (df2['Código'][u] in o)) and (type(df2['Código'][u]) == str):
-                total+=3
+                total+=50
                 Line_Presupuesto.objects.get_or_create(
                     Id=total,
                     Codigo=str(df2['Código'][u]),
