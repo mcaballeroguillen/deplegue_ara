@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from .views import DashboardView
-
+from calendarapp.views.other_views import handler404
 
 urlpatterns = [
     path('', DashboardView.as_view(), name='dashboard'),
@@ -28,6 +28,7 @@ urlpatterns = [
     path('', include('calendarapp.urls')),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+handler404 = handler404
 if settings.DEBUG:
     urlpatterns += static(
         settings.MEDIA_URL,

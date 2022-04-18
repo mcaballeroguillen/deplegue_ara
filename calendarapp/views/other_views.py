@@ -20,6 +20,7 @@ from calendarapp.forms import EventForm, AddMemberForm, excel_form
 from django.utils.functional import SimpleLazyObject
 from django.contrib import messages
 
+
 def get_date(req_day):
     if req_day:
         year, month = (int(x) for x in req_day.split('-'))
@@ -59,7 +60,7 @@ class CalendarView(LoginRequiredMixin, generic.ListView):
 
 
 @login_required(login_url='signup')
-@permission_required( 'calendarapp.add_event')
+@permission_required('calendarapp.add_event')
 def create_event(request):
     form = EventForm(request.POST or None)
     if request.POST and form.is_valid():
@@ -408,7 +409,12 @@ def filter_user(request):
     if request.method=='POST':
         forms = form_class()
         user_f= request.POST['Cuenta']
-        user_f = user.User.objects.get(email=user_f)
+        user_f = str(user_f).replace("(","")
+        user_f = str(user_f).replace("'", "")
+        user_f = str(user_f).replace(",", "")
+        user_f = str(user_f).replace(")", "")
+
+        user_f = user.User.objects.get(first_name=user_f)
         events = Event.objects.get_all_events(user=user_f)
         # Mostrar solo lineas de proyectos participates
         e_partica = Event.objects.filter(user=user_f)
@@ -443,10 +449,14 @@ def filter_user(request):
     else:
         unidad = request.user.unidad
 
-        opciones = user.User.objects.filter(unidad=unidad)
+        opciones = user.User.objects.filter(unidad=unidad).values_list('first_name')
         if unidad=="Oficina Nacional":
-            opciones=user.User.objects.all()
+            opciones=user.User.objects.all().values_list('first_name')
         ctx ={
             'opciones': opciones
         }
         return render(request, 'calendarapp/filter_calendar.html',ctx)
+
+def handler404(request, *args, **argv):
+
+    return render(request,"404.html",status=404)

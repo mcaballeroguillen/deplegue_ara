@@ -41,8 +41,10 @@ path(
         'event/aprobacion/<int:event_id>', other_views.agregar_aprobacion,
         name='event-aprobacion'
     ),
-    path('filter_user/',other_views.filter_user, name="filtra_calendario")
+    path('filter_user/',other_views.filter_user, name="filtra_calendario"),
+
 ]
+
 #if settings.DEBUG:
  #   urlpatterns += static(
   #      settings.MEDIA_URL,
