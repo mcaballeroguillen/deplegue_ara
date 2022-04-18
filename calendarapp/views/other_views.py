@@ -409,12 +409,7 @@ def filter_user(request):
     if request.method=='POST':
         forms = form_class()
         user_f= request.POST['Cuenta']
-        user_f = str(user_f).replace("(","")
-        user_f = str(user_f).replace("'", "")
-        user_f = str(user_f).replace(",", "")
-        user_f = str(user_f).replace(")", "")
-
-        user_f = user.User.objects.get(first_name=user_f)
+        user_f = user.User.objects.get(email=user_f)
         events = Event.objects.get_all_events(user=user_f)
         # Mostrar solo lineas de proyectos participates
         e_partica = Event.objects.filter(user=user_f)
@@ -449,9 +444,9 @@ def filter_user(request):
     else:
         unidad = request.user.unidad
 
-        opciones = user.User.objects.filter(unidad=unidad).values_list('first_name')
+        opciones = user.User.objects.filter(unidad=unidad)
         if unidad=="Oficina Nacional":
-            opciones=user.User.objects.all().values_list('first_name')
+            opciones=user.User.objects.all()
         ctx ={
             'opciones': opciones
         }
