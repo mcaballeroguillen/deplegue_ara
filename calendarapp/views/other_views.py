@@ -132,7 +132,7 @@ def event_details(request, event_id):
     Actualizar_Saldos(proyecto)
     return render(request, 'event-details.html', context)
 
-@permission_required('calendarapp.add_event_member')
+
 def add_eventmember(request, event_id):
     forms = AddMemberForm()
     if request.method == 'POST':
