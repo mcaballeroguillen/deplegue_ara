@@ -122,11 +122,18 @@ def event_details(request, event_id):
     line_id = event.linea_p_id
     linia  = Line_Presupuesto.objects.get(Id=line_id)
     prespuesto = event.Presupuesto
+    eje = linia.Ejecutado
+    eju = linia.En_Ejucucion
+    sa  = linia.Saldo
+
     context = {
         'event': event,
         'eventmember': eventmember,
         'linea': linia,
         'presupuest': prespuesto,
+        'ejecutado': eje,
+        'ejecucion': eju,
+        'saldo':sa
     }
     proyecto = event.Proyecto
     Actualizar_Saldos(proyecto)
