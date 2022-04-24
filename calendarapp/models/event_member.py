@@ -12,7 +12,7 @@ class EventMember(EventAbstract):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='event_members'
     )
-    Comentario = models.CharField(max_length=250)
+    Comentario = models.CharField(max_length=500)
     Aprobacion = models.BooleanField()
 
     class Meta:
