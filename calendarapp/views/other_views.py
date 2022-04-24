@@ -468,7 +468,7 @@ def filter_user(request):
                 name = op.first_name
                 ls = op.last_name
                 email = op.email
-                linea = str(name) + " " + str(ls) + "#" + str(email)
+                linea= str(email) +"#" + str(name)+" "+ str(ls)
                 opciones.append(linea)
         ctx ={
             'opciones': opciones

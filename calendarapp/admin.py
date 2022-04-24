@@ -7,10 +7,10 @@ from .models.linea_presupuesto import Line_Presupuesto
 class EventAdmin(admin.ModelAdmin):
     model = models.Event
     list_display = [
-        'id', 'title', 'user', 'is_active', 'is_deleted', 'created_at',
-        'updated_at'
+        'id', 'title', 'user', 'is_active', 'is_deleted', 'start_time',
+        'end_time'
     ]
-    list_filter = ['is_active', 'is_deleted','Proyecto','user']
+    list_filter = ['start_time', 'end_time','Proyecto','user']
     search_fields = ['title']
 
 
