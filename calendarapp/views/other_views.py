@@ -396,8 +396,10 @@ def Actualizar_Saldos(proyecto):
         for actividad in actividades_activas:
             presupuesto = actividad.Presupuesto
             total=total+presupuesto
+
         cuenta.En_Ejucucion=total
-        cuenta.Saldo=cuenta.Total-total
+        ejcutado = cuenta.Ejecutado
+        cuenta.Saldo=cuenta.Total-total-ejcutado
         cuenta.save()
 
 def SubirArchivos(request):
